@@ -3,6 +3,7 @@ require 'minitest/pride'
 require './lib/encryption'
 require 'date'
 require 'mocha/minitest'
+require 'mocha/setup'
 
 class EncryptionTest < Minitest::Test
   def test_it_exists
@@ -21,10 +22,10 @@ class EncryptionTest < Minitest::Test
 
   def test_initialize_default_arguments
     Date.stubs(:today).returns(Date.new(2020,9,18))
+    Kernel.stubs(:rand).with(99999).returns(1234)
     encryption = Encryption.new("Hello World")
 
-    assert_equal "Hello World", encryption.message
-    assert_equal "12345", encryption.key
+    assert_equal "01234", encryption.key
     assert_equal "180920", encryption.date
   end
 end
