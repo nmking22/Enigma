@@ -24,4 +24,20 @@ class Encryption
     end
     @date
   end
+
+# Move to module?
+  def a_shift
+    sum_key_digits(0, 1)
+    # create offset
+    # collect offset digit
+    # add offset key to key digit sum
+  end
+
+  def sum_key_digits(first_digit, second_digit)
+    @key[first_digit].to_i + @key[second_digit].to_i
+  end
+
+  def create_offset
+    (@date.to_i * @date.to_i).to_s[-4..-1]
+  end
 end
