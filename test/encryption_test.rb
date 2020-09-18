@@ -31,4 +31,10 @@ class EncryptionTest < Minitest::Test
     assert_equal "01234", encryption.key
     assert_equal "180920", encryption.date
   end
+
+  def test_a_shift
+    encryption = Encryption.new("Hello World", "12345", "040520")
+
+    assert_equal 5, encryption.a_shift
+  end
 end
