@@ -30,7 +30,7 @@ The offsets are extrapolated from the date form DDMMYY
 1. Last four digits are pulled out
 1. Each offset is one of the digits
 
-### Whiteboarding
+### Encryption
 
 ***Create Shifts***
 
