@@ -1,10 +1,12 @@
 class Encryption
-  attr_reader :message
+  attr_reader :message,
+              :character_set
 
   def initialize(message, key = nil, date = Date.today)
     @message = message
     @key = key
     @date = date
+    @character_set = ("a".."z").to_a << " "
   end
 
 # Move to module?
