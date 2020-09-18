@@ -47,4 +47,10 @@ class EncryptionTest < Minitest::Test
     assert_equal 7, encryption.sum_key_digits(2, 3)
     assert_equal 9, encryption.sum_key_digits(3, 4)
   end
+
+  def test_create_offset
+    encryption = Encryption.new("Hello World", "12345", "040520")
+
+    assert_equal "0400", encryption.create_offset
+  end
 end
