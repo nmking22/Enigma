@@ -33,8 +33,15 @@ class EncryptionTest < Minitest::Test
   end
 
   def test_a_shift
+    skip
     encryption = Encryption.new("Hello World", "12345", "040520")
 
     assert_equal 5, encryption.a_shift
+  end
+
+  def test_sum_key_digits
+    encryption = Encryption.new("Hello World", "12345", "040520")
+
+    assert_equal 3, encryption.sum_key_digits(0, 1)
   end
 end
