@@ -19,4 +19,11 @@ class DecryptionTest < Minitest::Test
     assert_equal "02715", decryption.key
     assert_equal "040895", decryption.date
   end
+
+  def test_date_defaults_to_today
+    Date.stubs(:today).returns(Date.new(2020,9,18))
+    decryption = Decryption.new("keder ohulw", "02715")
+
+    assert_equal "180920", encryption.date
+  end
 end
