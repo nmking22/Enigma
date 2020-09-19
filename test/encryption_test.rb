@@ -73,8 +73,16 @@ class EncryptionTest < Minitest::Test
   end
 
   def test_encrypt_message
+    skip
     encryption = Encryption.new("Hello World", "08304", "291018")
 
     assert_equal "vjqtbeaweqihssi", encryption.encrypt_message
+  end
+
+  def test_shift_into_character_set
+    encryption = Encryption.new("Hello World", "08304", "291018")
+    shift = 147
+
+    assert_equal 12, encryption.shift_into_character_set(shift)
   end
 end
