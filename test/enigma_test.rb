@@ -1,6 +1,7 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/encryption'
+require './lib/decryption'
 require './lib/enigma'
 require 'date'
 
