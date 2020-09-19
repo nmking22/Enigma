@@ -24,6 +24,6 @@ class DecryptionTest < Minitest::Test
     Date.stubs(:today).returns(Date.new(2020,9,18))
     decryption = Decryption.new("keder ohulw", "02715")
 
-    assert_equal "180920", encryption.date
+    assert_equal "180920", decryption.date
   end
 end
