@@ -88,4 +88,15 @@ class DecryptionTest < Minitest::Test
     assert_equal "l", decryption.shift("d", decryption.c_shift)
     assert_equal "l", decryption.shift("e", decryption.d_shift)
   end
+
+  def test_decrypt
+    decryption = Decryption.new("keder ohulw", "02715", "040895")
+
+    expected ={
+      decryption: "hello world",
+      key: "02715",
+      date: "040895"
+    }
+    assert_equal expected, decryption.decrypt
+  end
 end
