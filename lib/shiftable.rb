@@ -1,4 +1,11 @@
-module Shiftable
+module Shiftable  
+  def date
+    if @date.class == Date
+      @date = @date.strftime("%d%m%y")
+    end
+    @date
+  end
+
   def a_shift
     @key[0..1].to_i + collect_offset_digit(0)
   end

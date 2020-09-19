@@ -21,13 +21,6 @@ class Encryption
     @key
   end
 
-  def date
-    if @date.class == Date
-      @date = @date.strftime("%d%m%y")
-    end
-    @date
-  end
-
   def shift(letter, shift_type)
     new_index = @character_set.index(letter) + shift_type
     @character_set[shift_into_character_set(new_index)]
