@@ -29,10 +29,7 @@ class Encryption
 
 # Move to module?
   def a_shift
-    sum_key_digits(0, 1)
-    # create offset
-    # collect offset digit
-    # add offset key to key digit sum
+    sum_key_digits(0, 1) + collect_offset_digit(0)
   end
 
   def sum_key_digits(first_digit, second_digit)
