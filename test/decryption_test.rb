@@ -26,4 +26,10 @@ class DecryptionTest < Minitest::Test
 
     assert_equal "180920", decryption.date
   end
+
+  def test_create_offset
+    decryption = Decryption.new("keder ohulw", "02715", "040895")
+
+    assert_equal "1025", decryption.create_offset
+  end
 end
