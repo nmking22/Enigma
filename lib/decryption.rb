@@ -29,4 +29,12 @@ class Decryption
     end
     index
   end
+
+  def decrypt
+    encrypted_info = {
+      :decryption => shift_message(@ciphertext),
+      :key => key,
+      :date => date
+    }
+  end
 end
