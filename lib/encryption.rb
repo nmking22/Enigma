@@ -32,6 +32,10 @@ class Encryption
     sum_key_digits(0, 1) + collect_offset_digit(0)
   end
 
+  def b_shift
+    sum_key_digits(1, 2) + collect_offset_digit(1)
+  end
+
   def sum_key_digits(first_digit, second_digit)
     @key[first_digit].to_i + @key[second_digit].to_i
   end
