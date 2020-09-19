@@ -11,4 +11,12 @@ class DecryptionTest < Minitest::Test
 
     assert_instance_of Decryption, decryption
   end
+
+  def test_it_has_readable_attributes
+    decryption = Decryption.new("keder ohulw", "02715", "040895")
+
+    assert_equal "keder ohulw", decryption.ciphertext
+    assert_equal "02715", decryption.key
+    assert_equal "040895", decryption.date
+  end
 end
