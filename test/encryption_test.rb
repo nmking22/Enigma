@@ -66,6 +66,6 @@ class EncryptionTest < Minitest::Test
   def test_b_shift
     encryption = Encryption.new("Hello World", "12345", "040520")
 
-    assert_equal 7, encryption.b_shift
+    assert_equal 9, encryption.b_shift
   end
 end
