@@ -3,9 +3,8 @@ require './lib/shiftable'
 class Decryption
   include Shiftable
   attr_reader :ciphertext,
-              :key,
-              :date
-  def initialize(ciphertext, key, date)
+              :key
+  def initialize(ciphertext, key, date = Date.today)
     @ciphertext = ciphertext
     @key = key
     @date = date
