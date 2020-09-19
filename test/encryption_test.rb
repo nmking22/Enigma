@@ -21,6 +21,7 @@ class EncryptionTest < Minitest::Test
     expected = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
       "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "]
     assert_equal expected, encryption.character_set
+    assert_equal "0400", encryption.offset
   end
 
   def test_initialize_default_arguments
@@ -58,8 +59,8 @@ class EncryptionTest < Minitest::Test
     encryption = Encryption.new("Hello World", "12345", "040520")
 
     assert_equal 0, encryption.collect_offset_digit(0)
-    assert_equal 1, encryption.collect_offset_digit(1)
-    assert_equal 2, encryption.collect_offset_digit(2)
-    assert_equal 3, encryption.collect_offset_digit(3)
+    assert_equal 4, encryption.collect_offset_digit(1)
+    assert_equal 0, encryption.collect_offset_digit(2)
+    assert_equal 0, encryption.collect_offset_digit(3)
   end
 end
