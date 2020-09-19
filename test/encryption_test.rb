@@ -104,4 +104,13 @@ class EncryptionTest < Minitest::Test
     assert_equal "d", encryption.shift("l", encryption.c_shift)
     assert_equal "e", encryption.shift("l", encryption.d_shift)
   end
+
+  def test_shift_letter
+    encryption = Encryption.new("Hello World", "02715", "040895")
+
+    assert_equal "k", encryption.shift_letter("h", 0)
+    assert_equal "e", encryption.shift_letter("e", 1)
+    assert_equal "d", encryption.shift_letter("l", 2)
+    assert_equal "e", encryption.shift_letter("l", 3)
+  end
 end

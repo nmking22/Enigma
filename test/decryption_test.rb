@@ -15,9 +15,14 @@ class DecryptionTest < Minitest::Test
   def test_it_has_readable_attributes
     decryption = Decryption.new("keder ohulw", "02715", "040895")
 
+    expected = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
+      "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "]
+
     assert_equal "keder ohulw", decryption.ciphertext
     assert_equal "02715", decryption.key
     assert_equal "040895", decryption.date
+    assert_equal "1025", decryption.offset
+    assert_equal expected, decryption.character_set
   end
 
   def test_date_defaults_to_today
@@ -87,6 +92,15 @@ class DecryptionTest < Minitest::Test
     assert_equal "e", decryption.shift("e", decryption.b_shift)
     assert_equal "l", decryption.shift("d", decryption.c_shift)
     assert_equal "l", decryption.shift("e", decryption.d_shift)
+  end
+
+  def test_shift_letter
+    decryption = Decryption.new("keder ohulw", "02715", "040895")
+
+    assert_equal "h", decryption.shift_letter("k", 0)
+    assert_equal "e", decryption.shift_letter("e", 1)
+    assert_equal "l", decryption.shift_letter("d", 2)
+    assert_equal "l", decryption.shift_letter("e", 3)
   end
 
   def test_decrypt
