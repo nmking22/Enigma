@@ -53,4 +53,13 @@ class Encryption
   def collect_offset_digit(index)
     @offset[index].to_i
   end
+
+  def encrypt
+    # iterate through @message |letter|
+    # shift letter
+    # check if letter is out of @character_set index
+    # shift back 27 if not and loop until it is
+    # shovel letter into array
+    # join array into string & return string
+  end
 end
