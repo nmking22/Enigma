@@ -80,4 +80,10 @@ class EncryptionTest < Minitest::Test
 
     assert_equal 9, encryption.d_shift
   end
+
+  def test_encrypt
+    encryption = Encryption.new("Hello World", "12345", "040520")
+
+    assert_equal "knsuricxuuk", encryption.encrypt
+  end
 end
