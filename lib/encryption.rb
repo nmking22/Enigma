@@ -75,6 +75,11 @@ class Encryption
     encrypted_message.join
   end
 
+  def shift(letter, shift_type)
+    new_index = @character_set.index(letter) + shift_type
+    @character_set[shift_into_character_set(new_index)]
+  end
+
   def shift_into_character_set(index)
     loop do
       if index > 26
@@ -85,7 +90,7 @@ class Encryption
     end
     index
   end
-  
+
   def encrypt
     encrypted_info = {
       :encryption => encrypt_message,
