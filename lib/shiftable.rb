@@ -30,22 +30,16 @@ module Shiftable
     @offset[index].to_i
   end
 
-# Refactor this down
   def shift_message(message)
-    shift_counter = 1
     message_array = message.split("")
-    encrypted_message = message_array.map do |letter|
-      if shift_counter % 4 == 1
-        shift_counter += 1
+    encrypted_message = message_array.each_with_index.map do |letter, index|
+      if index % 4 == 0
         shift(letter, a_shift)
-      elsif shift_counter % 4 == 2
-        shift_counter += 1
+      elsif index % 4 == 1
         shift(letter, b_shift)
-      elsif shift_counter % 4 == 3
-        shift_counter += 1
+      elsif index % 4 == 2
         shift(letter, c_shift)
-      elsif shift_counter % 4 == 0
-        shift_counter += 1
+      elsif index % 4 == 3
         shift(letter, d_shift)
       end
     end
