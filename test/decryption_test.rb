@@ -69,7 +69,8 @@ class DecryptionTest < Minitest::Test
   def test_shift_message
     decryption = Decryption.new("keder ohulw", "02715", "040895")
 
-    assert_equal "hello world", decryption.shift_message
+    assert_equal "hello world",
+    decryption.shift_message(decryption.ciphertext)
   end
 
   def test_shift_into_character_set
