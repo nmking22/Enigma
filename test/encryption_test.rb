@@ -15,7 +15,7 @@ class EncryptionTest < Minitest::Test
   def test_it_has_readable_attributes
     encryption = Encryption.new("Hello World", "12345", "040520")
 
-    assert_equal "Hello World", encryption.message
+    assert_equal "hello world", encryption.message
     assert_equal "12345", encryption.key
     assert_equal "040520", encryption.date
     expected = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
