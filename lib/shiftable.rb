@@ -30,6 +30,7 @@ module Shiftable
     @offset[index].to_i
   end
 
+# Refactor this down
   def shift_message(message)
     shift_counter = 1
     message_array = message.split("")
