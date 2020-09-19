@@ -72,10 +72,10 @@ class EncryptionTest < Minitest::Test
     assert_equal 45, encryption.d_shift
   end
 
-  def test_encrypt_message
+  def test_shift_message
     encryption = Encryption.new("Hello World", "08304", "291018")
 
-    assert_equal "vjqtbeaweqi", encryption.encrypt_message
+    assert_equal "vjqtbeaweqi", encryption.shift_message
   end
 
   def test_shift_into_character_set

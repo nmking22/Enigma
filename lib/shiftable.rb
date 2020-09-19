@@ -1,4 +1,4 @@
-module Shiftable  
+module Shiftable
   def date
     if @date.class == Date
       @date = @date.strftime("%d%m%y")
@@ -30,7 +30,7 @@ module Shiftable
     @offset[index].to_i
   end
 
-  def encrypt_message
+  def shift_message
     shift_counter = 1
     message_array = @message.split("")
     encrypted_message = message_array.map do |letter|
