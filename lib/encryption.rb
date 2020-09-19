@@ -18,7 +18,6 @@ class Encryption
     end
     @key
   end
-
 # Move to module?
   def date
     if @date.class == Date
@@ -26,18 +25,21 @@ class Encryption
     end
     @date
   end
-
 # Move to module?
   def a_shift
     sum_key_digits(0, 1) + collect_offset_digit(0)
   end
-
+  # Move to module?
   def b_shift
     sum_key_digits(1, 2) + collect_offset_digit(1)
   end
-
+  # Move to module?
   def c_shift
     sum_key_digits(2, 3) + collect_offset_digit(2)
+  end
+  # Move to module?
+  def d_shift
+    sum_key_digits(3, 4) + collect_offset_digit(3)
   end
 
   def sum_key_digits(first_digit, second_digit)
