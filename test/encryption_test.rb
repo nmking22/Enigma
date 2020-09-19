@@ -86,7 +86,7 @@ class EncryptionTest < Minitest::Test
   end
 
   def test_encrypt
-    encryption = Encryption.new("Hello World", "08304", "291018")
+    encryption = Encryption.new("Hello World", "02715", "040895")
 
     expected = {
       encryption: "keder ohulw",
