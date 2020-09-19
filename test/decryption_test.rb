@@ -94,6 +94,15 @@ class DecryptionTest < Minitest::Test
     assert_equal "l", decryption.shift("e", decryption.d_shift)
   end
 
+  def test_shift_letter
+    decryption = Decryption.new("keder ohulw", "02715", "040895")
+
+    assert_equal "h", decryption.shift_letter("k", 0)
+    assert_equal "e", decryption.shift_letter("e", 1)
+    assert_equal "l", decryption.shift_letter("d", 2)
+    assert_equal "l", decryption.shift_letter("e", 3)
+  end
+
   def test_decrypt
     decryption = Decryption.new("keder ohulw", "02715", "040895")
 
