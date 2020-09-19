@@ -33,16 +33,20 @@ module Shiftable
   def shift_message(message)
     message_array = message.split("")
     encrypted_message = message_array.each_with_index.map do |letter, index|
-      if index % 4 == 0
-        shift(letter, a_shift)
-      elsif index % 4 == 1
-        shift(letter, b_shift)
-      elsif index % 4 == 2
-        shift(letter, c_shift)
-      elsif index % 4 == 3
-        shift(letter, d_shift)
-      end
+      shift_letter(letter, index)
     end
     encrypted_message.join
+  end
+
+  def shift_letter(letter, index)
+    if index % 4 == 0
+      shift(letter, a_shift)
+    elsif index % 4 == 1
+      shift(letter, b_shift)
+    elsif index % 4 == 2
+      shift(letter, c_shift)
+    elsif index % 4 == 3
+      shift(letter, d_shift)
+    end
   end
 end
