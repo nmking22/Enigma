@@ -39,7 +39,7 @@ class Encryption
 
   def encrypt
     encrypted_info = {
-      :encryption => encrypt_message,
+      :encryption => shift_message(@message),
       :key => key,
       :date => date
     }
