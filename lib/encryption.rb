@@ -1,12 +1,14 @@
 class Encryption
   attr_reader :message,
-              :character_set
+              :character_set,
+              :offset
 
   def initialize(message, key = nil, date = Date.today)
     @message = message
     @key = key
     @date = date
     @character_set = ("a".."z").to_a << " "
+    @offset = create_offset
   end
 
 # Move to module?
@@ -38,6 +40,10 @@ class Encryption
   end
 
   def create_offset
-    (@date.to_i * @date.to_i).to_s[-4..-1]
+    (date.to_i * date.to_i).to_s[-4..-1]
+  end
+
+  def collect_offset_digit(index)
+    @offset[index].to_i
   end
 end
