@@ -56,20 +56,16 @@ class Encryption
     encrypted_message = message_array.map do |letter|
       if shift_counter % 4 == 1
         shift_counter += 1
-        new_index = @character_set.index(letter) + a_shift
-        @character_set[shift_into_character_set(new_index)]
+        shift(letter, a_shift)
       elsif shift_counter % 4 == 2
         shift_counter += 1
-        new_index = @character_set.index(letter) + b_shift
-        @character_set[shift_into_character_set(new_index)]
+        shift(letter, b_shift)
       elsif shift_counter % 4 == 3
         shift_counter += 1
-        new_index = @character_set.index(letter) + c_shift
-        @character_set[shift_into_character_set(new_index)]
+        shift(letter, c_shift)
       elsif shift_counter % 4 == 0
         shift_counter += 1
-        new_index = @character_set.index(letter) + d_shift
-        @character_set[shift_into_character_set(new_index)]
+        shift(letter, d_shift)
       end
     end
     encrypted_message.join
