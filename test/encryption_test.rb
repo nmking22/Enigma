@@ -33,12 +33,6 @@ class EncryptionTest < Minitest::Test
     assert_equal "180920", encryption.date
   end
 
-  def test_a_shift
-    encryption = Encryption.new("Hello World", "12345", "040520")
-
-    assert_equal 3, encryption.a_shift
-  end
-
   def test_sum_key_digits
     encryption = Encryption.new("Hello World", "12345", "040520")
 
@@ -61,5 +55,17 @@ class EncryptionTest < Minitest::Test
     assert_equal 4, encryption.collect_offset_digit(1)
     assert_equal 0, encryption.collect_offset_digit(2)
     assert_equal 0, encryption.collect_offset_digit(3)
+  end
+
+  def test_a_shift
+    encryption = Encryption.new("Hello World", "12345", "040520")
+
+    assert_equal 3, encryption.a_shift
+  end
+
+  def test_b_shift
+    encryption = Encryption.new("Hello World", "12345", "040520")
+
+    assert_equal 7, encryption.b_shift
   end
 end
