@@ -75,13 +75,6 @@ class Encryption
     encrypted_message.join
   end
 
-    # iterate through @message |letter|
-    # shift letter
-    # check if letter is out of @character_set index
-    # shift back 27 if not and loop until it is
-    # shovel letter into array
-    # join array into string & return string
-
   def shift_into_character_set(index)
     loop do
       if index > 26
@@ -92,4 +85,12 @@ class Encryption
     end
     index
   end
+end
+
+def encrypt
+  encrypted_info = {
+    :encryption => encrypt_message,
+    :key => key,
+    :date => date
+  }
 end
