@@ -41,4 +41,28 @@ class DecryptionTest < Minitest::Test
     assert_equal 2, decryption.collect_offset_digit(2)
     assert_equal 5, decryption.collect_offset_digit(3)
   end
+
+  def test_a_shift
+    decryption = Decryption.new("keder ohulw", "02715", "040895")
+
+    assert_equal 3, decryption.a_shift
+  end
+
+  def test_b_shift
+    decryption = Decryption.new("keder ohulw", "02715", "040895")
+
+    assert_equal 27, decryption.b_shift
+  end
+
+  def test_c_shift
+    decryption = Decryption.new("keder ohulw", "02715", "040895")
+
+    assert_equal 73, decryption.c_shift
+  end
+
+  def test_d_shift
+    decryption = Decryption.new("keder ohulw", "02715", "040895")
+
+    assert_equal 20, decryption.d_shift
+  end
 end
