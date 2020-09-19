@@ -65,4 +65,17 @@ class DecryptionTest < Minitest::Test
 
     assert_equal 20, decryption.d_shift
   end
+
+  def test_shift_message
+    decryption = Decryption.new("keder ohulw", "02715", "040895")
+
+    assert_equal "hello world", decryption.shift_message
+  end
+
+  def test_shift_into_character_set
+    decryption = Decryption.new("keder ohulw", "02715", "040895")
+    index = -141
+
+    assert_equal 21, decryption.shift_into_character_set(index)
+  end
 end
