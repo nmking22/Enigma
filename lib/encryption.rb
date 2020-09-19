@@ -4,7 +4,7 @@ class Encryption
               :offset
 
   def initialize(message, key = nil, date = Date.today)
-    @message = message
+    @message = message.downcase
     @key = key
     @date = date
     @character_set = ("a".."z").to_a << " "
@@ -50,12 +50,39 @@ class Encryption
     @offset[index].to_i
   end
 
-  def encrypt
+  def encrypt_message
+    shift_counter = 1
+    message_array = @message.split("")
+    encrypted_message = message_array.map do |letter|
+      if shift_counter % 4 == 1
+        new_index = @character_set.index(letter) + a_shift
+        require 'pry'; binding.pry
+        shift_into_character_set(new_index)
+      elsif shift_counter % 4 == 2
+
+      elsif shift_counter % 4 == 3
+
+      elsif shift_counter % 4 == 0
+
+      end
+    end
+  end
+
     # iterate through @message |letter|
     # shift letter
     # check if letter is out of @character_set index
     # shift back 27 if not and loop until it is
     # shovel letter into array
     # join array into string & return string
+
+  def shift_into_character_set(index)
+    loop do
+      if index > 26
+        index -= 27
+      else
+        break
+      end
+    end
+    index
   end
 end
