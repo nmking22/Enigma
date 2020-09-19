@@ -85,12 +85,12 @@ class Encryption
     end
     index
   end
-end
-
-def encrypt
-  encrypted_info = {
-    :encryption => encrypt_message,
-    :key => key,
-    :date => date
-  }
+  
+  def encrypt
+    encrypted_info = {
+      :encryption => encrypt_message,
+      :key => key,
+      :date => date
+    }
+  end
 end
