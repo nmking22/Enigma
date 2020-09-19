@@ -84,4 +84,14 @@ class EncryptionTest < Minitest::Test
 
     assert_equal 12, encryption.shift_into_character_set(shift)
   end
+
+  def test_encrypt
+    encryption = Encryption.new("Hello World", "08304", "291018")
+
+    expected = {
+      encryption: "keder ohulw",
+      key: "02715",
+      date: "040895"
+    }
+  end
 end
