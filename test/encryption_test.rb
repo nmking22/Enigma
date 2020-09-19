@@ -1,7 +1,5 @@
-require 'minitest/autorun'
-require 'minitest/pride'
+require './test/test_helper'
 require './lib/encryption'
-require 'date'
 require 'mocha/minitest'
 require 'mocha/setup'
 
