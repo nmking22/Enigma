@@ -94,4 +94,13 @@ class EncryptionTest < Minitest::Test
       date: "040895"
     }
   end
+
+  def test_shift
+    encryption = Encryption.new("Hello World", "02715", "040895")
+
+    assert_equal "k", encryption.shift("h", encryption.a_shift)
+    assert_equal "e", encryption.shift("e", encryption.b_shift)
+    assert_equal "d", encryption.shift("l", encryption.c_shift)
+    assert_equal "e", encryption.shift("l", encryption.d_shift)
+  end
 end
