@@ -33,16 +33,6 @@ class EncryptionTest < Minitest::Test
     assert_equal "180920", encryption.date
   end
 
-  def test_sum_key_digits
-    skip
-    encryption = Encryption.new("Hello World", "12345", "040520")
-
-    assert_equal 3, encryption.sum_key_digits(0, 1)
-    assert_equal 5, encryption.sum_key_digits(1, 2)
-    assert_equal 7, encryption.sum_key_digits(2, 3)
-    assert_equal 9, encryption.sum_key_digits(3, 4)
-  end
-
   def test_create_offset
     encryption = Encryption.new("Hello World", "12345", "040520")
 
