@@ -32,4 +32,13 @@ class DecryptionTest < Minitest::Test
 
     assert_equal "1025", decryption.create_offset
   end
+
+  def test_collect_offset_digit
+    decryption = Decryption.new("keder ohulw", "02715", "040895")
+
+    assert_equal 1, decryption.collect_offset_digit(0)
+    assert_equal 0, decryption.collect_offset_digit(1)
+    assert_equal 2, decryption.collect_offset_digit(2)
+    assert_equal 5, decryption.collect_offset_digit(3)
+  end
 end
