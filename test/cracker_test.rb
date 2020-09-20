@@ -21,6 +21,7 @@ class CrackerTest < Minitest::Test
     assert_equal "291018", cracker.date
     assert_equal expected, cracker.character_set
     assert_equal "6324", cracker.offset
+    assert_equal "hssi", cracker.last_four_characters
   end
 
   def test_date_defaults_to_today
