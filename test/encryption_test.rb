@@ -1,7 +1,5 @@
-require 'minitest/autorun'
-require 'minitest/pride'
+require './test/test_helper'
 require './lib/encryption'
-require 'date'
 require 'mocha/minitest'
 require 'mocha/setup'
 
@@ -31,6 +29,12 @@ class EncryptionTest < Minitest::Test
 
     assert_equal "01234", encryption.key
     assert_equal "180920", encryption.date
+  end
+
+  def test_random_key_is_in_range
+    encryption = Encryption.new("Hello World")
+
+    assert_includes(0..99999, encryption.key.to_i)
   end
 
   def test_create_offset
