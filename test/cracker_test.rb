@@ -21,4 +21,11 @@ class CrackerTest < Minitest::Test
     assert_equal "291018", cracker.date
     assert_equal expected, cracker.character_set
   end
+
+  def test_date_defaults_to_today
+    Date.stubs(:today).returns(Date.new(2020,9,18))
+    cracker = Cracker.new("vjqtbeaweqihssi")
+
+    assert_equal "180920", cracker.date
+  end
 end
