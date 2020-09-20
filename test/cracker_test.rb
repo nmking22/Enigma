@@ -41,4 +41,12 @@ class CrackerTest < Minitest::Test
     assert_equal "4632", cracker_3.find_shifted_offset
     assert_equal "6342", cracker_4.find_shifted_offset
   end
+
+  def test_rotate
+    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+
+    assert_equal "4632", cracker.rotate(1)
+    assert_equal "2463", cracker.rotate(2)
+    assert_equal "4632", cracker.rotate(3)
+  end
 end
