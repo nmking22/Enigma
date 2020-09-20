@@ -29,4 +29,16 @@ class CrackerTest < Minitest::Test
 
     assert_equal "180920", cracker.date
   end
+
+  def test_find_shifted_offsets
+    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+    cracker_2 = Cracker.new("jqtbeaweqihssi", "291018")
+    cracker_3 = Cracker.new("qtbeaweqihssi", "291018")
+    cracker_4 = Cracker.new("tbeaweqihssi", "291018")
+
+    assert_equal "4632", cracker.find_shifted_offsets
+    assert_equal "2463", cracker_2.find_shifted_offsets
+    assert_equal "4632", cracker_3.find_shifted_offsets
+    assert_equal "6342", cracker_4.find_shifted_offsets
+  end
 end
