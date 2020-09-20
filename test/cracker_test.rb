@@ -54,6 +54,6 @@ class CrackerTest < Minitest::Test
   def test_find_shifts
     cracker = Cracker.new("vjqtbeaweqihssi", "291018")
 
-    assert_equal [8, 14, 5, 5], cracker.find_shifts
+    assert_equal [14, 5, 5, 8], cracker.find_shifts
   end
 end
