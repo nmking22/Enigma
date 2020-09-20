@@ -4,12 +4,14 @@ class Cracker
   include Shiftable
   attr_reader :ciphertext,
               :offset,
-              :character_set
+              :character_set,
+              :last_four_characters
   def initialize(ciphertext, date = Date.today)
     @ciphertext = ciphertext
     @date = date
     @offset = create_offset
     @character_set = ("a".."z").to_a << " "
+    @last_four_characters = ciphertext[-4..-1]
   end
 
   def shifted_offset
