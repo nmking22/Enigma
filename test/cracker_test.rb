@@ -28,4 +28,10 @@ class CrackerTest < Minitest::Test
 
     assert_equal "180920", cracker.date
   end
+
+  def test_it_can_create_offset
+    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+
+    assert_equal "6342", cracker.offset
+  end
 end
