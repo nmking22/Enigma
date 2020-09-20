@@ -121,6 +121,6 @@ class EncryptionTest < Minitest::Test
   def test_non_character_set_characters_are_not_shifted
     encryption = Encryption.new("H3l7o >o?ld", "02715", "040895")
 
-    assert_equal "keder ohulw", encryption.encrypt[:encryption]
+    assert_equal "k3d7r >h?lw", encryption.encrypt[:encryption]
   end
 end
