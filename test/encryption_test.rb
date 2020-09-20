@@ -117,4 +117,10 @@ class EncryptionTest < Minitest::Test
     assert_equal "d", encryption.shift_letter("l", 2)
     assert_equal "e", encryption.shift_letter("l", 3)
   end
+
+  def test_non_character_set_characters_are_not_shifted
+    encryption = Encryption.new("H3l7o >o?ld", "02715", "040895")
+
+    assert_equal "k3d7r >h?lw", encryption.encrypt[:encryption]
+  end
 end
