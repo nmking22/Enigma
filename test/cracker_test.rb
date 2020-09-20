@@ -32,6 +32,6 @@ class CrackerTest < Minitest::Test
   def test_it_can_create_offset
     cracker = Cracker.new("vjqtbeaweqihssi", "291018")
 
-    assert_equal "6342", cracker.offset
+    assert_equal "6324", cracker.offset
   end
 end
