@@ -20,6 +20,7 @@ class CrackerTest < Minitest::Test
     assert_equal "vjqtbeaweqihssi", cracker.ciphertext
     assert_equal "291018", cracker.date
     assert_equal expected, cracker.character_set
+    assert_equal "6324", cracker.offset
   end
 
   def test_date_defaults_to_today
@@ -27,11 +28,5 @@ class CrackerTest < Minitest::Test
     cracker = Cracker.new("vjqtbeaweqihssi")
 
     assert_equal "180920", cracker.date
-  end
-
-  def test_it_can_create_offset
-    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
-
-    assert_equal "6324", cracker.offset
   end
 end
