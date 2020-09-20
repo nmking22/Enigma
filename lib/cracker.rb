@@ -19,6 +19,11 @@ class Cracker
     elsif @ciphertext.length % 4 == 0
     end
   end
+
+  def rotate(number)
+    new_offset = @offset.split("")
+    new_offset.rotate(number).join
+  end
   # find shifted offset to be used on last four chars
   # check length of ciphertext % 4
     # if 1 -> rotate 3
