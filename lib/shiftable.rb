@@ -7,7 +7,7 @@ module Shiftable
   end
 
   def a_shift
-    @key[0..1].to_i + collect_offset_digit(0)
+    key[0..1].to_i + collect_offset_digit(0)
   end
 
   def b_shift
