@@ -1,8 +1,10 @@
+require './lib/shiftable'
+
 class Cracker
+  include Shiftable
   attr_reader :ciphertext,
-              :date,
               :character_set
-  def initialize(ciphertext, date)
+  def initialize(ciphertext, date = Date.today)
     @ciphertext = ciphertext
     @date = date
     @character_set = ("a".."z").to_a << " "
