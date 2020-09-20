@@ -1,5 +1,6 @@
 require './test/test_helper'
 require './lib/cracker'
+# Remove mocha requires if mocks/stubs not used
 require 'mocha/minitest'
 require 'mocha/setup'
 
@@ -17,7 +18,7 @@ class CrackerTest < Minitest::Test
       "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", " "]
 
     assert_equal "vjqtbeaweqihssi", cracker.ciphertext
-    assert_equal "291018", cracker.key
+    assert_equal "291018", cracker.date
     assert_equal expected, cracker.character_set
   end
 end
