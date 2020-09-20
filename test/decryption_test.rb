@@ -111,4 +111,10 @@ class DecryptionTest < Minitest::Test
     }
     assert_equal expected, decryption.decrypt
   end
+
+  def test_non_character_set_characters_are_not_shifted
+    decryption = Decryption.new("k3d7r >h?lw", "02715", "040895")
+
+    assert_equal "h3l7o >o?ld", decryption.decrypt[:decryption]
+  end
 end
