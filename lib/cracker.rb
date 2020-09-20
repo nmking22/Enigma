@@ -14,9 +14,13 @@ class Cracker
 
   def find_shifted_offset
     if @ciphertext.length % 4 == 1
+      rotate(3)
     elsif @ciphertext.length % 4 == 2
+      rotate(2)
     elsif @ciphertext.length % 4 == 3
+      rotate(1)
     elsif @ciphertext.length % 4 == 0
+      @offset
     end
   end
 
