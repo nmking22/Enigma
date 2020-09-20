@@ -15,8 +15,12 @@ class Decryption
   end
 
   def shift(letter, shift_type)
-    new_index = @character_set.index(letter) - shift_type
-    @character_set[shift_into_character_set(new_index)]
+    if @character_set.include? letter
+      new_index = @character_set.index(letter) - shift_type
+      @character_set[shift_into_character_set(new_index)]
+    else
+      letter
+    end
   end
 
   def shift_into_character_set(index)
