@@ -12,7 +12,7 @@ class Cracker
     @character_set = ("a".."z").to_a << " "
   end
 
-  def find_shifted_offset
+  def shifted_offset
     if @ciphertext.length % 4 == 1
       rotate(3)
     elsif @ciphertext.length % 4 == 2
@@ -40,6 +40,8 @@ class Cracker
       # convert offset back to string
 
   # pull out last four characters of string
-  # ending indexes: 26, 4, 13, 3
+  # ending final indexes: 26, 4, 13, 3
+  # ending test indexes: 7, 18, 18, 8
+  # shifts: 8, 14, 5, 5
 
 end
