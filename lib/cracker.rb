@@ -34,8 +34,6 @@ class Cracker
   end
 
   def find_shifts
-    # helper method to array and rotate offsets
-    # iterate through last_four_characters
     shifts_array = []
     @last_four_characters.each_with_index do |letter, index|
       shift_amount = (@character_set.index(letter) - ending_indexes[index])
@@ -45,7 +43,6 @@ class Cracker
       shifts_array << shift_amount
     end
     rotate_shifts(shifts_array)
-    # rotate
   end
 
   def rotate_shifts(shifts_array)
@@ -59,9 +56,5 @@ class Cracker
       shifts_array
     end
   end
-  # pull out last four characters of string
-  # ending final indexes: 26, 4, 13, 3
-  # ending test indexes: 18, 18, 8, 7
-  # shifts: 8, 14, 5, 4
-  # char_index - ending_index = shift
+
 end
