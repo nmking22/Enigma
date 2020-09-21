@@ -105,6 +105,20 @@ class Cracker
       # break loop
     # else -> keep looping
     # ---------------------- END LOOP HERE ------------------------------- #
-  # Step 5: Return Array
+  # Step 5: Join array and return
+  def key
+    key_shift_possibilities
+  end
 
+  def key_shift_possibilities
+    shift_possibilities = Hash.new
+    key_shifts.each_with_index do |shift, index|
+      until shift > 99
+        shift_possibilities[index] ||= []
+        shift_possibilities[index] << shift.to_s.rjust(2, "0")
+        shift += 27
+      end
+    end
+    shift_possibilities
+  end
 end
