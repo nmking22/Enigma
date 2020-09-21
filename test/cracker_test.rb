@@ -144,4 +144,12 @@ class CrackerTest < Minitest::Test
 
     assert_equal [8, 2, 3, 4], cracker.key_shifts
   end
+
+  def test_key_shifts_returns_positive_values
+    cracker = Cracker.new("vjqtbeaweqihssi", "291019")
+
+    cracker.populate_shifts
+
+    assert_equal [6, 2, 26, 7], cracker.key_shifts
+  end
 end
