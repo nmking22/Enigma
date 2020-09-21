@@ -1,7 +1,9 @@
 require './lib/shiftable'
+require './lib/decryptable'
 
 class Cracker
   include Shiftable
+  include Decryptable
   attr_reader :ciphertext,
               :offset,
               :character_set,
@@ -73,27 +75,6 @@ class Cracker
 
   def d_shift
     @shifts[3]
-  end
-
-  # These should probably get moved into new decryptable module
-  def shift(letter, shift_type)
-    if @character_set.include? letter
-      new_index = @character_set.index(letter) - shift_type
-      @character_set[shift_into_character_set(new_index)]
-    else
-      letter
-    end
-  end
-
-  def shift_into_character_set(index)
-    loop do
-      if index < 0
-        index += 27
-      else
-        break
-      end
-    end
-    index
   end
 
   def crack
