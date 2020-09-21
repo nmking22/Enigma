@@ -1,6 +1,5 @@
 require './test/test_helper'
 require './lib/cracker'
-# Remove mocha requires if mocks/stubs not used
 require 'mocha/minitest'
 require 'mocha/setup'
 
@@ -21,7 +20,8 @@ class CrackerTest < Minitest::Test
     assert_equal "291018", cracker.date
     assert_equal expected, cracker.character_set
     assert_equal "6324", cracker.offset
-    assert_equal "hssi", cracker.last_four_characters
+    assert_equal ["h", "s", "s", "i"], cracker.last_four_characters
+    assert_equal [26, 4, 13, 3], cracker.ending_indexes
   end
 
   def test_date_defaults_to_today
@@ -46,9 +46,9 @@ class CrackerTest < Minitest::Test
   def test_rotate
     cracker = Cracker.new("vjqtbeaweqihssi", "291018")
 
-    assert_equal "3246", cracker.rotate(1)
-    assert_equal "2463", cracker.rotate(2)
-    assert_equal "4632", cracker.rotate(3)
+    assert_equal "3246", cracker.rotate_offset(1)
+    assert_equal "2463", cracker.rotate_offset(2)
+    assert_equal "4632", cracker.rotate_offset(3)
   end
 
   def test_find_shifts
