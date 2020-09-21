@@ -1,7 +1,9 @@
 require './lib/shiftable'
+require './lib/decryptable'
 
 class Decryption
   include Shiftable
+  include Decryptable
   attr_reader :ciphertext,
               :key,
               :offset,
@@ -12,26 +14,6 @@ class Decryption
     @date = date
     @offset = create_offset
     @character_set = ("a".."z").to_a << " "
-  end
-
-  def shift(letter, shift_type)
-    if @character_set.include? letter
-      new_index = @character_set.index(letter) - shift_type
-      @character_set[shift_into_character_set(new_index)]
-    else
-      letter
-    end
-  end
-
-  def shift_into_character_set(index)
-    loop do
-      if index < 0
-        index += 27
-      else
-        break
-      end
-    end
-    index
   end
 
   def decrypt
