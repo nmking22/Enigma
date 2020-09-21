@@ -22,6 +22,7 @@ class CrackerTest < Minitest::Test
     assert_equal "6324", cracker.offset
     assert_equal ["h", "s", "s", "i"], cracker.last_four_characters
     assert_equal [26, 4, 13, 3], cracker.ending_indexes
+    assert_equal [], cracker.shifts
   end
 
   def test_date_defaults_to_today
@@ -51,10 +52,10 @@ class CrackerTest < Minitest::Test
     assert_equal "4632", cracker.rotate_offset(3)
   end
 
-  def test_find_shifts
+  def test_populate_shifts
     cracker = Cracker.new("vjqtbeaweqihssi", "291018")
 
-    assert_equal [14, 5, 5, 8], cracker.find_shifts
+    assert_equal [14, 5, 5, 8], cracker.populate_shifts
   end
 
   def test_rotate_shifts
