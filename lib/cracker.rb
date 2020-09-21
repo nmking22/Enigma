@@ -106,15 +106,15 @@ class Cracker
     # else -> keep looping
     # ---------------------- END LOOP HERE ------------------------------- #
   # Step 5: Join array and return
-  def key
+  def find_key
     loop do
       possibility = possible_key_shift
       if possibility[0][1] == possibility[1][0] && possibility[1][1] == possibility[2][0] && possibility [2][1] == possibility[3][0]
-        @key_string = possibility[0] + possibility[1][1] + possibility[2][1] + possibility[3][1]
+        @key = possibility[0] + possibility[1][1] + possibility[2][1] + possibility[3][1]
         break
       end
     end
-    @key_string
+    @key
   end
 
   def key_shift_possibilities
