@@ -109,4 +109,43 @@ class CrackerTest < Minitest::Test
 
     assert_equal expected, cracker.crack
   end
+
+  def test_shift
+    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+
+    cracker.populate_shifts
+
+    assert_equal "h", cracker.shift("v", cracker.a_shift)
+    assert_equal "e", cracker.shift("j", cracker.b_shift)
+    assert_equal "l", cracker.shift("q", cracker.c_shift)
+    assert_equal "l", cracker.shift("t", cracker.d_shift)
+  end
+
+  def test_shift_into_character_set
+    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+
+    index = -141
+
+    assert_equal 21, cracker.shift_into_character_set(index)
+  end
+
+  def test_shift_message
+    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+
+    cracker.populate_shifts
+
+    assert_equal "hello world end",
+    cracker.shift_message(cracker.ciphertext)
+  end
+
+  def test_shift_letter
+    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+
+    cracker.populate_shifts
+
+    assert_equal "h", cracker.shift_letter("v", 0)
+    assert_equal "e", cracker.shift_letter("j", 1)
+    assert_equal "l", cracker.shift_letter("q", 2)
+    assert_equal "l", cracker.shift_letter("t", 3)
+  end
 end
