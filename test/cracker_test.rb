@@ -121,6 +121,14 @@ class CrackerTest < Minitest::Test
     assert_equal "l", cracker.shift("t", cracker.d_shift)
   end
 
+  def test_non_character_set_characters_are_not_shifted
+    cracker = Cracker.new("v3q7be>w?qihssi", "291018")
+
+    cracker.populate_shifts
+
+    assert_equal "h3l7o >o?ld end", cracker.crack[:decryption]
+  end
+
   def test_shift_into_character_set
     cracker = Cracker.new("vjqtbeaweqihssi", "291018")
 
