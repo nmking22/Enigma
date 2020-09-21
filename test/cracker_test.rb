@@ -97,4 +97,16 @@ class CrackerTest < Minitest::Test
 
     assert_equal 8, cracker.d_shift
   end
+
+  def test_crack
+    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+
+    expected = {
+      decryption: "hello world end",
+      date: "291018"
+      # key: "08304"
+    }
+
+    assert_equal expected, cracker.crack
+  end
 end
