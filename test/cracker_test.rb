@@ -163,10 +163,26 @@ class CrackerTest < Minitest::Test
   end
 
   def test_key
+    skip
     cracker = Cracker.new("vjqtbeaweqihssi", "291018")
 
     cracker.populate_shifts
 
     assert_equal "08304", cracker.key
+  end
+
+  def test_key_shift_possibilities
+    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+
+    cracker.populate_shifts
+
+    expected = {
+      0 => ["08", "35", "62", "89"],
+      1 => ["02", "29", "56", "83"],
+      2 => ["03", "30", "57", "84"],
+      3 => ["04", "31", "58", "85"]
+    }
+
+    assert_equal expected, cracker.key_shift_possibilities
   end
 end
