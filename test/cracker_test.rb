@@ -23,6 +23,7 @@ class CrackerTest < Minitest::Test
     assert_equal ["h", "s", "s", "i"], cracker.last_four_characters
     assert_equal [26, 4, 13, 3], cracker.ending_indexes
     assert_equal [], cracker.shifts
+    assert_equal nil, cracker.key
   end
 
   def test_date_defaults_to_today
