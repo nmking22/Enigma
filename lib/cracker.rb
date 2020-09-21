@@ -107,7 +107,7 @@ class Cracker
     # ---------------------- END LOOP HERE ------------------------------- #
   # Step 5: Join array and return
   def key
-    key_shift_possibilities
+    
   end
 
   def key_shift_possibilities
@@ -120,5 +120,12 @@ class Cracker
       end
     end
     shift_possibilities
+  end
+
+  def possible_key_shift
+    possible_key_shift = key_shift_possibilities.map do |key, possibilities|
+      possibilities.sample
+    end
+    possible_key_shift
   end
 end
