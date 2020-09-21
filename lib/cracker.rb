@@ -74,4 +74,34 @@ class Cracker
   def d_shift
     @shifts[3]
   end
+
+  # These should probably get moved into new decryptable module
+  def shift(letter, shift_type)
+    if @character_set.include? letter
+      new_index = @character_set.index(letter) - shift_type
+      @character_set[shift_into_character_set(new_index)]
+    else
+      letter
+    end
+  end
+
+  def shift_into_character_set(index)
+    loop do
+      if index < 0
+        index += 27
+      else
+        break
+      end
+    end
+    index
+  end
+
+  def crack
+    populate_shifts
+    encrypted_info = {
+      :decryption => shift_message(@ciphertext),
+      :date => date,
+      # :key => key
+    }
+  end
 end
