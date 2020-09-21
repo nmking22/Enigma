@@ -81,4 +81,13 @@ class Cracker
       end
     end
   end
+
+  def convert_to_strings(key_shifts)
+    string_shifts = key_shifts.map do |shift|
+      shift.to_s.rjust(2, "0")
+    end
+  end
+  # Step 2: Convert each shift value to 2 character string
+  # Step 3: Check if second character of each element is equal to
+  # first character of following element
 end
