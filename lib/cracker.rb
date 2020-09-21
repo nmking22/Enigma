@@ -82,12 +82,29 @@ class Cracker
     end
   end
 
+  # Step 2: Convert each shift value to 2 character string
   def convert_to_strings(key_shifts)
     string_shifts = key_shifts.map do |shift|
       shift.to_s.rjust(2, "0")
     end
   end
-  # Step 2: Convert each shift value to 2 character string
   # Step 3: Check if second character of each element is equal to
   # first character of following element
+  # each with index
+
+  # NEW PLAN
+  # Step 1: Same as above - pull out key shifts
+  # Step 2: Iterate through key_shifts
+    # Create an array for each shift that contains all possible 2 digit
+    # combinations in string form - ex: 08 returns ["08", "35", "62", "89"]
+  # ---------------------- START LOOP HERE ----------------------------- #
+  # Step 3: Use sample method on each possibility array and shovel results
+  # into new array
+  # Step 4: Check if array satisfies conditions
+    # if array[0][1] == array[1][0] && array[1][1] == array[2][0] && array [2][1] == array[3][0]
+      # break loop
+    # else -> keep looping
+    # ---------------------- END LOOP HERE ------------------------------- #
+  # Step 5: Return Array
+
 end
