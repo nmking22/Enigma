@@ -163,7 +163,6 @@ class CrackerTest < Minitest::Test
   end
 
   def test_key
-    skip
     cracker = Cracker.new("vjqtbeaweqihssi", "291018")
 
     cracker.populate_shifts
