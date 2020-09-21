@@ -56,4 +56,16 @@ class CrackerTest < Minitest::Test
 
     assert_equal [14, 5, 5, 8], cracker.find_shifts
   end
+
+  def test_rotate_shifts
+    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+    cracker_2 = Cracker.new("vjqtbeaweqihss", "291018")
+    cracker_3 = Cracker.new("vjqtbeaweqihs", "291018")
+    cracker_4 = Cracker.new("vjqtbeaweqih", "291018")
+
+    assert_equal [14, 5, 5, 8], cracker.rotate_shifts([8, 14, 5, 5])
+    assert_equal [5, 5, 8, 14], cracker_2.rotate_shifts([8, 14, 5, 5])
+    assert_equal [5, 8, 14, 5], cracker_3.rotate_shifts([8, 14, 5, 5])
+    assert_equal [8, 14, 5, 5], cracker_4.rotate_shifts([8, 14, 5, 5])
+  end
 end
