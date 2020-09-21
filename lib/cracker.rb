@@ -64,10 +64,11 @@ class Cracker
 
   def crack
     populate_shifts
+    find_key
     encrypted_info = {
       :decryption => shift_message(@ciphertext),
       :date => date,
-      # :key => key
+      :key => @key
     }
   end
 

@@ -84,8 +84,8 @@ class CrackerTest < Minitest::Test
 
     expected = {
       decryption: "hello world end",
-      date: "291018"
-      # key: "08304"
+      date: "291018",
+      key: "08304"
     }
 
     assert_equal expected, cracker.crack
