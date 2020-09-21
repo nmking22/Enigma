@@ -73,7 +73,12 @@ class Cracker
   # Step 1: Pull out key shifts
   def key_shifts
     key_shifts = populate_shifts.each_with_index.map do |shift, index|
-      shift - offset[index].to_i
+      key_shift = shift - offset[index].to_i
+      if key_shift < 0
+        key_shift + 27
+      else
+        key_shift
+      end
     end
   end
 end
