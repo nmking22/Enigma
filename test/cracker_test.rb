@@ -19,7 +19,7 @@ class CrackerTest < Minitest::Test
     assert_equal "vjqtbeaweqihssi", cracker.ciphertext
     assert_equal "291018", cracker.date
     assert_equal expected, cracker.character_set
-    assert_equal "6324", cracker.offset
+    assert_equal 6324, cracker.offset
     assert_equal ["h", "s", "s", "i"], cracker.last_four_characters
     assert_equal [26, 4, 13, 3], cracker.ending_indexes
     assert_equal [], cracker.shifts

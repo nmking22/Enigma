@@ -13,7 +13,7 @@ class Cracker
   def initialize(ciphertext, date = Date.today)
     @ciphertext = ciphertext
     @date = date
-    @offset = create_offset
+    @offset = create_offset.to_i
     @character_set = ("a".."z").to_a << " "
     @last_four_characters = ciphertext[-4..-1].split("")
     @ending_indexes = [26, 4, 13, 3]
@@ -70,4 +70,8 @@ class Cracker
   end
 
   # HOW TO FIND KEYS
+  # Step 1: Pull out key shifts
+  def key_shifts
+
+  end
 end
