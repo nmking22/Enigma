@@ -9,7 +9,8 @@ class Cracker
               :character_set,
               :last_four_characters,
               :ending_indexes,
-              :shifts
+              :shifts,
+              :key
   def initialize(ciphertext, date = Date.today)
     @ciphertext = ciphertext
     @date = date
@@ -18,6 +19,7 @@ class Cracker
     @last_four_characters = ciphertext[-4..-1].split("")
     @ending_indexes = [26, 4, 13, 3]
     @shifts = []
+    @key = key
   end
 
   def populate_shifts
