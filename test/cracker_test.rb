@@ -72,24 +72,28 @@ class CrackerTest < Minitest::Test
 
   def test_a_shift
     cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+    cracker.populate_shifts
 
     assert_equal 14, cracker.a_shift
   end
 
   def test_b_shift
     cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+    cracker.populate_shifts
 
     assert_equal 5, cracker.b_shift
   end
 
   def test_c_shift
     cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+    cracker.populate_shifts
 
     assert_equal 5, cracker.c_shift
   end
 
   def test_d_shift
     cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+    cracker.populate_shifts
 
     assert_equal 8, cracker.d_shift
   end
