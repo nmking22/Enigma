@@ -185,4 +185,16 @@ class CrackerTest < Minitest::Test
 
     assert_equal expected, cracker.key_shift_possibilities
   end
+
+  def test_possible_key_shift
+    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+
+    cracker.populate_shifts
+
+    assert_equal 4, cracker.possible_key_shift.length
+    assert_includes(["08", "35", "62", "89"], cracker.possible_key_shift[0])
+    assert_includes(["02", "29", "56", "83"], cracker.possible_key_shift[1])
+    assert_includes(["03", "30", "57", "84"], cracker.possible_key_shift[2])
+    assert_includes(["04", "31", "58", "85"], cracker.possible_key_shift[3])
+  end
 end
