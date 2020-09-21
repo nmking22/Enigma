@@ -136,4 +136,12 @@ class CrackerTest < Minitest::Test
     assert_equal "l", cracker.shift_letter("q", 2)
     assert_equal "l", cracker.shift_letter("t", 3)
   end
+
+  def test_key_shifts
+    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+
+    cracker.populate_shifts
+
+    assert_equal [8, 2, 3, 4], cracker.key_shifts
+  end
 end
