@@ -20,23 +20,6 @@ class Cracker
     @shifts = []
   end
 
-  def shifted_offset
-    if @ciphertext.length % 4 == 1
-      rotate_offset(3)
-    elsif @ciphertext.length % 4 == 2
-      rotate_offset(2)
-    elsif @ciphertext.length % 4 == 3
-      rotate_offset(1)
-    elsif @ciphertext.length % 4 == 0
-      @offset
-    end
-  end
-
-  def rotate_offset(number)
-    new_offset = @offset.split("")
-    new_offset.rotate(number).join
-  end
-
   def populate_shifts
     shifts_array = []
     @last_four_characters.each_with_index do |letter, index|
@@ -85,4 +68,6 @@ class Cracker
       # :key => key
     }
   end
+
+  # HOW TO FIND KEYS
 end

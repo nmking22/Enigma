@@ -32,26 +32,6 @@ class CrackerTest < Minitest::Test
     assert_equal "180920", cracker.date
   end
 
-  def test_shifted_offset
-    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
-    cracker_2 = Cracker.new("jqtbeaweqihssi", "291018")
-    cracker_3 = Cracker.new("qtbeaweqihssi", "291018")
-    cracker_4 = Cracker.new("tbeaweqihssi", "291018")
-
-    assert_equal "3246", cracker.shifted_offset
-    assert_equal "2463", cracker_2.shifted_offset
-    assert_equal "4632", cracker_3.shifted_offset
-    assert_equal "6324", cracker_4.shifted_offset
-  end
-
-  def test_rotate_offset
-    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
-
-    assert_equal "3246", cracker.rotate_offset(1)
-    assert_equal "2463", cracker.rotate_offset(2)
-    assert_equal "4632", cracker.rotate_offset(3)
-  end
-
   def test_populate_shifts
     cracker = Cracker.new("vjqtbeaweqihssi", "291018")
 
