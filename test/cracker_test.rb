@@ -161,4 +161,12 @@ class CrackerTest < Minitest::Test
     expected = ["08", "02", "03", "04"]
     assert_equal expected, cracker.convert_to_strings(cracker.key_shifts)
   end
+
+  def test_key
+    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+
+    cracker.populate_shifts
+
+    assert_equal "08304", cracker.key
+  end
 end
