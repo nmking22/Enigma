@@ -6,7 +6,8 @@ class Cracker
               :offset,
               :character_set,
               :last_four_characters,
-              :ending_indexes
+              :ending_indexes,
+              :shifts
   def initialize(ciphertext, date = Date.today)
     @ciphertext = ciphertext
     @date = date
@@ -14,6 +15,7 @@ class Cracker
     @character_set = ("a".."z").to_a << " "
     @last_four_characters = ciphertext[-4..-1].split("")
     @ending_indexes = [26, 4, 13, 3]
+    @shifts = []
   end
 
   def shifted_offset
@@ -33,7 +35,7 @@ class Cracker
     new_offset.rotate(number).join
   end
 
-  def find_shifts
+  def populate_shifts
     shifts_array = []
     @last_four_characters.each_with_index do |letter, index|
       shift_amount = (@character_set.index(letter) - ending_indexes[index])
@@ -42,7 +44,7 @@ class Cracker
       end
       shifts_array << shift_amount
     end
-    rotate_shifts(shifts_array)
+    @shifts = rotate_shifts(shifts_array)
   end
 
   def rotate_shifts(shifts_array)
@@ -57,4 +59,19 @@ class Cracker
     end
   end
 
+  def a_shift
+    @shifts[0]
+  end
+
+  def b_shift
+    @shifts[1]
+  end
+
+  def c_shift
+    @shifts[2]
+  end
+
+  def d_shift
+    @shifts[3]
+  end
 end
