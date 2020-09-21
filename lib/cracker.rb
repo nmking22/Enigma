@@ -9,7 +9,8 @@ class Cracker
               :character_set,
               :last_four_characters,
               :ending_indexes,
-              :shifts
+              :shifts,
+              :key
   def initialize(ciphertext, date = Date.today)
     @ciphertext = ciphertext
     @date = date
@@ -18,23 +19,7 @@ class Cracker
     @last_four_characters = ciphertext[-4..-1].split("")
     @ending_indexes = [26, 4, 13, 3]
     @shifts = []
-  end
-
-  def shifted_offset
-    if @ciphertext.length % 4 == 1
-      rotate_offset(3)
-    elsif @ciphertext.length % 4 == 2
-      rotate_offset(2)
-    elsif @ciphertext.length % 4 == 3
-      rotate_offset(1)
-    elsif @ciphertext.length % 4 == 0
-      @offset
-    end
-  end
-
-  def rotate_offset(number)
-    new_offset = @offset.split("")
-    new_offset.rotate(number).join
+    @key = key
   end
 
   def populate_shifts
@@ -79,10 +64,52 @@ class Cracker
 
   def crack
     populate_shifts
+    find_key
     encrypted_info = {
       :decryption => shift_message(@ciphertext),
       :date => date,
-      # :key => key
+      :key => @key
     }
+  end
+
+  def key_shifts
+    key_shifts = populate_shifts.each_with_index.map do |shift, index|
+      key_shift = shift - offset[index].to_i
+      if key_shift < 0
+        key_shift + 27
+      else
+        key_shift
+      end
+    end
+  end
+
+  def find_key
+    loop do
+      possibility = possible_key_shift
+      if possibility[0][1] == possibility[1][0] && possibility[1][1] == possibility[2][0] && possibility [2][1] == possibility[3][0]
+        @key = possibility[0] + possibility[1][1] + possibility[2][1] + possibility[3][1]
+        break
+      end
+    end
+    @key
+  end
+
+  def key_shift_possibilities
+    shift_possibilities = Hash.new
+    key_shifts.each_with_index do |shift, index|
+      until shift > 99
+        shift_possibilities[index] ||= []
+        shift_possibilities[index] << shift.to_s.rjust(2, "0")
+        shift += 27
+      end
+    end
+    shift_possibilities
+  end
+
+  def possible_key_shift
+    possible_key_shift = key_shift_possibilities.map do |key, possibilities|
+      possibilities.sample
+    end
+    possible_key_shift
   end
 end

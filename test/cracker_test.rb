@@ -23,6 +23,7 @@ class CrackerTest < Minitest::Test
     assert_equal ["h", "s", "s", "i"], cracker.last_four_characters
     assert_equal [26, 4, 13, 3], cracker.ending_indexes
     assert_equal [], cracker.shifts
+    assert_equal nil, cracker.key
   end
 
   def test_date_defaults_to_today
@@ -30,26 +31,6 @@ class CrackerTest < Minitest::Test
     cracker = Cracker.new("vjqtbeaweqihssi")
 
     assert_equal "180920", cracker.date
-  end
-
-  def test_shifted_offset
-    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
-    cracker_2 = Cracker.new("jqtbeaweqihssi", "291018")
-    cracker_3 = Cracker.new("qtbeaweqihssi", "291018")
-    cracker_4 = Cracker.new("tbeaweqihssi", "291018")
-
-    assert_equal "3246", cracker.shifted_offset
-    assert_equal "2463", cracker_2.shifted_offset
-    assert_equal "4632", cracker_3.shifted_offset
-    assert_equal "6324", cracker_4.shifted_offset
-  end
-
-  def test_rotate_offset
-    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
-
-    assert_equal "3246", cracker.rotate_offset(1)
-    assert_equal "2463", cracker.rotate_offset(2)
-    assert_equal "4632", cracker.rotate_offset(3)
   end
 
   def test_populate_shifts
@@ -103,8 +84,8 @@ class CrackerTest < Minitest::Test
 
     expected = {
       decryption: "hello world end",
-      date: "291018"
-      # key: "08304"
+      date: "291018",
+      key: "08304"
     }
 
     assert_equal expected, cracker.crack
@@ -155,5 +136,56 @@ class CrackerTest < Minitest::Test
     assert_equal "e", cracker.shift_letter("j", 1)
     assert_equal "l", cracker.shift_letter("q", 2)
     assert_equal "l", cracker.shift_letter("t", 3)
+  end
+
+  def test_key_shifts
+    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+
+    cracker.populate_shifts
+
+    assert_equal [8, 2, 3, 4], cracker.key_shifts
+  end
+
+  def test_key_shifts_returns_positive_values
+    cracker = Cracker.new("vjqtbeaweqihssi", "291019")
+
+    cracker.populate_shifts
+
+    assert_equal [6, 2, 26, 7], cracker.key_shifts
+  end
+
+  def test_find_key
+    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+
+    cracker.populate_shifts
+
+    assert_equal "08304", cracker.find_key
+  end
+
+  def test_key_shift_possibilities
+    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+
+    cracker.populate_shifts
+
+    expected = {
+      0 => ["08", "35", "62", "89"],
+      1 => ["02", "29", "56", "83"],
+      2 => ["03", "30", "57", "84"],
+      3 => ["04", "31", "58", "85"]
+    }
+
+    assert_equal expected, cracker.key_shift_possibilities
+  end
+
+  def test_possible_key_shift
+    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+
+    cracker.populate_shifts
+
+    assert_equal 4, cracker.possible_key_shift.length
+    assert_includes(["08", "35", "62", "89"], cracker.possible_key_shift[0])
+    assert_includes(["02", "29", "56", "83"], cracker.possible_key_shift[1])
+    assert_includes(["03", "30", "57", "84"], cracker.possible_key_shift[2])
+    assert_includes(["04", "31", "58", "85"], cracker.possible_key_shift[3])
   end
 end

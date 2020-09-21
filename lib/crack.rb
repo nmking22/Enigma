@@ -10,6 +10,4 @@ enigma = Enigma.new
 cracker = enigma.crack(message, ARGV[2])
 cracked_file = File.open(ARGV[1], "w")
 cracked_file.write(cracker[:decryption])
-puts "Created '#{ARGV[1]}' with the date #{cracker[:date]}"
-# key declaration pulled out for now
-# key #{cracker[:key]} and
+puts "Created '#{ARGV[1]}' with the cracked key #{cracker[:key]} and date #{cracker[:date]}"
