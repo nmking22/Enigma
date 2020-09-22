@@ -10,8 +10,8 @@ class Cracker
               :last_four_characters,
               :ending_indexes,
               :shifts,
-              :key
-  def initialize(ciphertext, date = Date.today)
+              :date
+  def initialize(ciphertext, date = Date.today.strftime("%d%m%y"))
     @ciphertext = ciphertext
     @date = date
     @offset = create_offset
@@ -19,7 +19,6 @@ class Cracker
     @last_four_characters = ciphertext[-4..-1].split("")
     @ending_indexes = [26, 4, 13, 3]
     @shifts = []
-    @key = key
   end
 
   def populate_shifts
@@ -35,14 +34,14 @@ class Cracker
   end
 
   def rotate_shifts(shifts_array)
-    if @ciphertext.length % 4 == 1
+    if @ciphertext.length % 4 == 0
+      shifts_array
+    elsif @ciphertext.length % 4 == 1
       shifts_array.rotate(3)
     elsif @ciphertext.length % 4 == 2
       shifts_array.rotate(2)
     elsif @ciphertext.length % 4 == 3
       shifts_array.rotate(1)
-    elsif @ciphertext.length % 4 == 0
-      shifts_array
     end
   end
 
@@ -64,11 +63,10 @@ class Cracker
 
   def crack
     populate_shifts
-    find_key
     encrypted_info = {
       :decryption => shift_message(@ciphertext),
       :date => date,
-      :key => @key
+      :key => key
     }
   end
 
@@ -83,10 +81,10 @@ class Cracker
     end
   end
 
-  def find_key
+  def key
     loop do
       possibility = possible_key_shift
-      if possibility[0][1] == possibility[1][0] && possibility[1][1] == possibility[2][0] && possibility [2][1] == possibility[3][0]
+      if valid_possibility?(possibility)
         @key = possibility[0] + possibility[1][1] + possibility[2][1] + possibility[3][1]
         break
       end
@@ -94,11 +92,16 @@ class Cracker
     @key
   end
 
+  def valid_possibility?(possibility)
+    possibility[0][1] == possibility[1][0] &&
+    possibility[1][1] == possibility[2][0] &&
+    possibility [2][1] == possibility[3][0]
+  end
+
   def key_shift_possibilities
-    shift_possibilities = Hash.new
+    shift_possibilities = Hash.new { |h, k| h[k] = [] }
     key_shifts.each_with_index do |shift, index|
       until shift > 99
-        shift_possibilities[index] ||= []
         shift_possibilities[index] << shift.to_s.rjust(2, "0")
         shift += 27
       end

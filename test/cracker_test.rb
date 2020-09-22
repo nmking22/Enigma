@@ -23,7 +23,6 @@ class CrackerTest < Minitest::Test
     assert_equal ["h", "s", "s", "i"], cracker.last_four_characters
     assert_equal [26, 4, 13, 3], cracker.ending_indexes
     assert_equal [], cracker.shifts
-    assert_equal nil, cracker.key
   end
 
   def test_date_defaults_to_today
@@ -154,12 +153,12 @@ class CrackerTest < Minitest::Test
     assert_equal [6, 2, 26, 7], cracker.key_shifts
   end
 
-  def test_find_key
+  def test_key
     cracker = Cracker.new("vjqtbeaweqihssi", "291018")
 
     cracker.populate_shifts
 
-    assert_equal "08304", cracker.find_key
+    assert_equal "08304", cracker.key
   end
 
   def test_key_shift_possibilities
@@ -187,5 +186,16 @@ class CrackerTest < Minitest::Test
     assert_includes(["02", "29", "56", "83"], cracker.possible_key_shift[1])
     assert_includes(["03", "30", "57", "84"], cracker.possible_key_shift[2])
     assert_includes(["04", "31", "58", "85"], cracker.possible_key_shift[3])
+  end
+
+  def test_valid_possibility?
+    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+
+    cracker.populate_shifts
+
+    refute cracker.valid_possibility?(["08", "02", "03", "04"])
+    refute cracker.valid_possibility?(["35", "29", "30", "31"])
+    assert cracker.valid_possibility?(["08", "83", "30", "04"])
+    assert cracker.valid_possibility?(["12", "23", "34", "45"])
   end
 end
