@@ -189,7 +189,7 @@ class CrackerTest < Minitest::Test
     assert_includes(["04", "31", "58", "85"], cracker.possible_key_shift[3])
   end
 
-  def test_valid_possibility?(possibility)
+  def test_valid_possibility?
     cracker = Cracker.new("vjqtbeaweqihssi", "291018")
 
     cracker.populate_shifts
