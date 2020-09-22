@@ -188,4 +188,15 @@ class CrackerTest < Minitest::Test
     assert_includes(["03", "30", "57", "84"], cracker.possible_key_shift[2])
     assert_includes(["04", "31", "58", "85"], cracker.possible_key_shift[3])
   end
+
+  def test_valid_possibility?(possibility)
+    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
+
+    cracker.populate_shifts
+
+    refute cracker.valid_possibility?(["08", "02", "03", "04"])
+    refute cracker.valid_possibility?(["35", "29", "30", "31"])
+    assert cracker.valid_possibility?(["08", "83", "30", "04"])
+    assert cracker.valid_possibility?(["12", "23", "34", "45"])
+  end
 end
