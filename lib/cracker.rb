@@ -86,7 +86,7 @@ class Cracker
   def find_key
     loop do
       possibility = possible_key_shift
-      if possibility[0][1] == possibility[1][0] && possibility[1][1] == possibility[2][0] && possibility [2][1] == possibility[3][0]
+      if valid_possibility?(possibility)
         @key = possibility[0] + possibility[1][1] + possibility[2][1] + possibility[3][1]
         break
       end
@@ -94,11 +94,16 @@ class Cracker
     @key
   end
 
+  def valid_possibility?(possibility)
+    possibility[0][1] == possibility[1][0] &&
+    possibility[1][1] == possibility[2][0] &&
+    possibility [2][1] == possibility[3][0]
+  end
+
   def key_shift_possibilities
-    shift_possibilities = Hash.new
+    shift_possibilities = Hash.new { |h, k| h[k] = [] }
     key_shifts.each_with_index do |shift, index|
       until shift > 99
-        shift_possibilities[index] ||= []
         shift_possibilities[index] << shift.to_s.rjust(2, "0")
         shift += 27
       end
