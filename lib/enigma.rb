@@ -1,3 +1,7 @@
+require './lib/encryption'
+require './lib/decryption'
+require './lib/cracker'
+
 class Enigma
   def initialize
 
