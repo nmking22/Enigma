@@ -23,7 +23,6 @@ class CrackerTest < Minitest::Test
     assert_equal ["h", "s", "s", "i"], cracker.last_four_characters
     assert_equal [26, 4, 13, 3], cracker.ending_indexes
     assert_equal [], cracker.shifts
-    assert_equal nil, cracker.key
   end
 
   def test_date_defaults_to_today
@@ -154,12 +153,12 @@ class CrackerTest < Minitest::Test
     assert_equal [6, 2, 26, 7], cracker.key_shifts
   end
 
-  def test_find_key
+  def test_key
     cracker = Cracker.new("vjqtbeaweqihssi", "291018")
 
     cracker.populate_shifts
 
-    assert_equal "08304", cracker.find_key
+    assert_equal "08304", cracker.key
   end
 
   def test_key_shift_possibilities

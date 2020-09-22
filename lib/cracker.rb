@@ -9,8 +9,7 @@ class Cracker
               :character_set,
               :last_four_characters,
               :ending_indexes,
-              :shifts,
-              :key
+              :shifts
   def initialize(ciphertext, date = Date.today)
     @ciphertext = ciphertext
     @date = date
@@ -19,7 +18,6 @@ class Cracker
     @last_four_characters = ciphertext[-4..-1].split("")
     @ending_indexes = [26, 4, 13, 3]
     @shifts = []
-    @key = key
   end
 
   def populate_shifts
@@ -64,11 +62,10 @@ class Cracker
 
   def crack
     populate_shifts
-    find_key
     encrypted_info = {
       :decryption => shift_message(@ciphertext),
       :date => date,
-      :key => @key
+      :key => key
     }
   end
 
@@ -83,7 +80,7 @@ class Cracker
     end
   end
 
-  def find_key
+  def key
     loop do
       possibility = possible_key_shift
       if valid_possibility?(possibility)
