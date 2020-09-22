@@ -198,12 +198,4 @@ class CrackerTest < Minitest::Test
     assert cracker.valid_possibility?(["08", "83", "30", "04"])
     assert cracker.valid_possibility?(["12", "23", "34", "45"])
   end
-
-  def test_combine_into_key
-    cracker = Cracker.new("vjqtbeaweqihssi", "291018")
-
-    cracker.populate_shifts
-
-    assert_equal "08304", combine_into_key(["08", "83", "30", "04"])
-  end
 end
