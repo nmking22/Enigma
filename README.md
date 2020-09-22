@@ -8,7 +8,7 @@
 
 ### Object Oriented Programming
 
-3.5 or 4 - I think all of my classes have specific purposes and only carry out those purposes. I implemented two module files - shiftable and decryptable - that pass methods to classes that can shift and decrypt respectably. Both of these are used appropriately and help DRY up the code. My cracker class may be too long, though. I think given more time, I would have extracted a key_cracker class out of this to shorten the file. I do think all of the functionality through iteration 3, however, adheres to OOP.
+3.5 - I think all of my classes have specific purposes and only carry out those purposes. I implemented two module files - shiftable and decryptable - that pass methods to classes that can shift and decrypt respectably. Both of these are used appropriately and help DRY up the code. My cracker class may be too long, though. I think given more time, I would have extracted a key_cracker class out of this to shorten the file.
 
 ### Ruby Conventions and Mechanics
 
