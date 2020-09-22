@@ -9,8 +9,9 @@ class Cracker
               :character_set,
               :last_four_characters,
               :ending_indexes,
-              :shifts
-  def initialize(ciphertext, date = Date.today)
+              :shifts,
+              :date
+  def initialize(ciphertext, date = Date.today.strftime("%d%m%y"))
     @ciphertext = ciphertext
     @date = date
     @offset = create_offset

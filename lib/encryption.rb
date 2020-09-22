@@ -4,9 +4,9 @@ class Encryption
   include Shiftable
   attr_reader :message,
               :character_set,
-              :offset
-
-  def initialize(message, key = nil, date = Date.today)
+              :offset,
+              :date
+  def initialize(message, key = nil, date = Date.today.strftime("%d%m%y"))
     @message = message.downcase
     @key = key
     @date = date

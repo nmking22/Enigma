@@ -7,8 +7,9 @@ class Decryption
   attr_reader :ciphertext,
               :key,
               :offset,
-              :character_set
-  def initialize(ciphertext, key, date = Date.today)
+              :character_set,
+              :date
+  def initialize(ciphertext, key, date = Date.today.strftime("%d%m%y"))
     @ciphertext = ciphertext
     @key = key
     @date = date
