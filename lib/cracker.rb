@@ -34,14 +34,14 @@ class Cracker
   end
 
   def rotate_shifts(shifts_array)
-    if @ciphertext.length % 4 == 1
+    if @ciphertext.length % 4 == 0
+      shifts_array
+    elsif @ciphertext.length % 4 == 1
       shifts_array.rotate(3)
     elsif @ciphertext.length % 4 == 2
       shifts_array.rotate(2)
     elsif @ciphertext.length % 4 == 3
       shifts_array.rotate(1)
-    elsif @ciphertext.length % 4 == 0
-      shifts_array
     end
   end
 
